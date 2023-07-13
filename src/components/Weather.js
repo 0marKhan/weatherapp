@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Card from "./Card";
 
 import {
   WiCloud,
@@ -8,7 +9,6 @@ import {
   WiThunderstorm,
   WiSnow,
   WiFog,
-  WiMist,
 } from "react-icons/wi";
 
 const Weather = () => {
@@ -16,6 +16,8 @@ const Weather = () => {
   const [location, setLocation] = useState({});
   const [newLocation, setNewLocation] = useState("Peshawar");
   const [enteredLocation, setEnteredLocation] = useState("");
+
+  console.log(location);
 
   useEffect(() => {
     const getLocation = async () => {
@@ -83,7 +85,7 @@ const Weather = () => {
   return (
     <div className="weather-container">
       <form
-        className="flex w-full justify-center pt-5"
+        className="flex w-full justify-center pt-9"
         onSubmit={submitHandler}
       >
         <input
@@ -102,13 +104,14 @@ const Weather = () => {
         <div className="flex flex-col items-center">
           <p className="real text-xl mb-2">{weather.name}</p>
           <h1 className="font-bold text-8xl">
-            {weather?.main?.temp.toFixed(0)}
+            {weather?.main?.temp.toFixed(0)}°C
           </h1>
           {weatherIcon}
-          <p className="text-2xl font-semibold">
-            {weather?.weather[0]?.description}
+          <p className="text-2xl mt-3 font-semibold">
+            {weather?.weather && weather.weather[0]?.description}
           </p>
         </div>
+        <Card weatherDetails={weather} />
       </div>
     </div>
   );
