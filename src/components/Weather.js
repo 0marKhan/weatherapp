@@ -23,7 +23,7 @@ const Weather = () => {
     const getLocation = async () => {
       try {
         const locationResponse = await axios.get(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${newLocation}&limit=1&appid=c03501503788636df869755599d3dcf4`
+          `https://api.openweathermap.org/geo/1.0/direct?q=${newLocation}&limit=1&appid=c03501503788636df869755599d3dcf4`
         );
         setLocation(locationResponse.data[0]);
 
